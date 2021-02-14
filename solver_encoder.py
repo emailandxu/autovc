@@ -120,6 +120,9 @@ class Solver(object):
                     log += ", {}: {:.4f}".format(tag, loss[tag])
                 print(log)
                 
+            # save model
+            if (i+1) % 1000 == 0:
+                torch.save({"model":self.G.state_dict()}, "./autovc")
 
     
     

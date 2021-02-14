@@ -1,5 +1,6 @@
 """
 Generate speaker embeddings and metadata for training
+metadata include speakrname, embedding, the whole spec npz file list of the speacker
 """
 import os
 import pickle

@@ -45,7 +45,8 @@ class Utterances(data.Dataset):
                 if j < 2:  # fill in speaker id and embedding
                     uttrs[j] = tmp
                 else: # load the mel-spectrograms
-                    uttrs[j] = np.load(os.path.join(self.root_dir, tmp))
+                    #uttrs[j] = np.load(os.path.join(self.root_dir, tmp))
+                    uttrs[j] = tmp
             dataset[idx_offset+k] = uttrs
                    
         
@@ -54,6 +55,10 @@ class Utterances(data.Dataset):
         dataset = self.train_dataset 
         list_uttrs = dataset[index]
         emb_org = list_uttrs[1]
+
+        for i in range(2,len(list_uttrs)):
+            tmp = list_uttrs[i]
+            list_uttrs[i] = np.load(os.path.join(self.root_dir, tmp))
         
         # pick random uttr with random crop
         a = np.random.randint(2, len(list_uttrs))
